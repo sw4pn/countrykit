@@ -1,0 +1,61 @@
+{
+  "name": "countrykit",
+  "version": "1.0.0",
+  "description": "Tiny, dependency-free TypeScript toolkit for countries, currencies, languages and flags.",
+  "author": "Swapnil Andhale <sw4pn@yahoo.com>",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
+    "bench": "pnpm build && node bench/index.mjs",
+    "prepack": "pnpm build"
+  },
+  "keywords": [
+    "country",
+    "countries",
+    "currency",
+    "language",
+    "flag",
+    "iso3166",
+    "iso4217",
+    "iso639",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@10.30.3",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^10.8.0",
+    "prettier": "^3.9.6",
+    "tinybench": "^2.9.0",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.65.0",
+    "vitest": "^4.1.10"
+  }
+}
