@@ -1,6 +1,6 @@
-# CountryKit
+# countrykit-core
 
-CountryKit is a tiny, dependency-free TypeScript toolkit for country, currency,
+CountryKit-Core is a tiny, dependency-free TypeScript toolkit for country, currency,
 language, and flag information. It provides immutable datasets, flexible
 identifier resolution, and ESM-first APIs designed for modern applications.
 
@@ -19,25 +19,25 @@ identifier resolution, and ESM-first APIs designed for modern applications.
 ## Installation
 
 ```sh
-npm install countrykit
+npm install countrykit-core
 ```
 
 ```sh
-pnpm add countrykit
+pnpm add countrykit-core
 ```
 
 ```sh
-yarn add countrykit
+yarn add countrykit-core
 ```
 
 ```sh
-bun add countrykit
+bun add countrykit-core
 ```
 
 ## Quick Start
 
 ```ts
-import { getCountry, getFlag, isCurrencyCode } from "countrykit";
+import { getCountry, getFlag, isCurrencyCode } from "countrykit-core";
 
 const india = getCountry("IND");
 // { code: "IN", name: "India", ... }
@@ -60,7 +60,7 @@ Returns a country from an ISO 3166-1 alpha-2 code, alpha-3 code, English name,
 or official name.
 
 ```ts
-import { getCountry } from "countrykit";
+import { getCountry } from "countrykit-core";
 
 getCountry("IN");
 getCountry("IND");
@@ -79,7 +79,7 @@ whitespace.
 Returns every country in dataset order. The result is lazily cached and frozen.
 
 ```ts
-import { getCountries } from "countrykit";
+import { getCountries } from "countrykit-core";
 
 const countries = getCountries();
 for (const country of countries) {
@@ -93,7 +93,7 @@ Performs a deterministic, case-insensitive substring search against English and
 official country names. It does not perform fuzzy matching or ranking.
 
 ```ts
-import { searchCountries } from "countrykit";
+import { searchCountries } from "countrykit-core";
 
 searchCountries("republic");
 // [{ code: "IN", name: "India", ... }]
@@ -109,7 +109,7 @@ searchCountries("america");
 Returns a currency from its ISO 4217 code or English name.
 
 ```ts
-import { getCurrency } from "countrykit";
+import { getCurrency } from "countrykit-core";
 
 getCurrency("USD");
 getCurrency("united states dollar");
@@ -126,7 +126,7 @@ Results are backed by a lazy reverse index and cached by canonical currency
 code.
 
 ```ts
-import { getCountriesByCurrency } from "countrykit";
+import { getCountriesByCurrency } from "countrykit-core";
 
 getCountriesByCurrency("INR");
 // [{ code: "IN", name: "India", ... }]
@@ -142,7 +142,7 @@ getCountriesByCurrency("United States Dollar");
 Returns a language from its ISO 639-1 code, English name, or native name.
 
 ```ts
-import { getLanguage } from "countrykit";
+import { getLanguage } from "countrykit-core";
 
 getLanguage("en");
 getLanguage("French");
@@ -156,7 +156,7 @@ Returns countries using a language identified by code, English name, or native
 name.
 
 ```ts
-import { getCountriesByLanguage } from "countrykit";
+import { getCountriesByLanguage } from "countrykit-core";
 
 getCountriesByLanguage("Hindi");
 // [{ code: "IN", name: "India", ... }]
@@ -173,7 +173,7 @@ Returns an emoji flag by default. Set `type` to `"svg"` or `"png"` to receive
 a FlagCDN URL.
 
 ```ts
-import { getFlag } from "countrykit";
+import { getFlag } from "countrykit-core";
 
 getFlag("India");
 // "🇮🇳"
@@ -186,7 +186,7 @@ getFlag("IND", { type: "png" });
 ```
 
 SVG and PNG URLs are generated on demand; no external request is made by
-CountryKit itself.
+countrykit-core itself.
 
 ### `getFlagByCurrency(currencyIdentifier, options?)`
 
@@ -195,7 +195,7 @@ accepts an ISO 4217 code or English currency name; flag options are the same as
 `getFlag()`.
 
 ```ts
-import { getFlagByCurrency } from "countrykit";
+import { getFlagByCurrency } from "countrykit-core";
 
 getFlagByCurrency("INR");
 // "🇮🇳"
@@ -212,7 +212,7 @@ The validation functions accept only canonical dataset codes, case-insensitively
 They do not accept names or alpha-3 country codes.
 
 ```ts
-import { isCountryCode, isCurrencyCode, isLanguageCode } from "countrykit";
+import { isCountryCode, isCurrencyCode, isLanguageCode } from "countrykit-core";
 
 isCountryCode("in"); // true
 isCountryCode("India"); // false
@@ -231,7 +231,12 @@ Their top-level containers are frozen. Prefer the lookup APIs when resolving
 user input.
 
 ```ts
-import { countries, currencies, languages, translations } from "countrykit";
+import {
+  countries,
+  currencies,
+  languages,
+  translations,
+} from "countrykit-core";
 
 console.log(countries.IN?.name);
 console.log(currencies.USD?.symbol);
@@ -252,7 +257,7 @@ import type {
   FlagOptions,
   Language,
   LanguageCode,
-} from "countrykit";
+} from "countrykit-core";
 
 const preferredCountry: CountryCode = "IN";
 const options: FlagOptions = { type: "svg" };
@@ -268,7 +273,7 @@ CountryKit is ESM-only and declares `sideEffects: false`. Import individual
 functions to allow modern bundlers to remove unused exports.
 
 ```ts
-import { getFlag } from "countrykit";
+import { getFlag } from "countrykit-core";
 ```
 
 Avoid namespace imports when minimizing application bundles is important.
@@ -281,7 +286,7 @@ Use CountryKit through a modern bundler such as Vite, Rollup, Webpack, or
 esbuild.
 
 ```ts
-import { getCountry } from "countrykit";
+import { getCountry } from "countrykit-core";
 
 document.querySelector("#country")!.textContent = getCountry("US")?.name ?? "";
 ```
@@ -291,7 +296,7 @@ document.querySelector("#country")!.textContent = getCountry("US")?.name ?? "";
 CountryKit supports Node.js 18 and later in ESM projects.
 
 ```ts
-import { getCountries } from "countrykit";
+import { getCountries } from "countrykit-core";
 
 console.log(getCountries().length);
 ```
@@ -299,7 +304,7 @@ console.log(getCountries().length);
 ### Bun
 
 ```ts
-import { getFlag } from "countrykit";
+import { getFlag } from "countrykit-core";
 
 console.log(getFlag("India"));
 ```
@@ -309,7 +314,7 @@ console.log(getFlag("India"));
 Use Deno's npm compatibility layer.
 
 ```ts
-import { getLanguage } from "npm:countrykit";
+import { getLanguage } from "npm:countrykit-core";
 
 console.log(getLanguage("Deutsch"));
 ```

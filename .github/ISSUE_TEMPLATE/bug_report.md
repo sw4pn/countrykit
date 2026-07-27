@@ -24,7 +24,7 @@ What did you expect to happen?
 
 ## Environment
 
-- CountryKit version:
+- CountryKit-Core version:
 - Runtime and version:
 - Package manager:
 - Operating system:

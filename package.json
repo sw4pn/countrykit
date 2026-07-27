@@ -1,5 +1,5 @@
 {
-  "name": "countrykit",
+  "name": "countrykit-core",
   "version": "1.0.0",
   "description": "Tiny, dependency-free TypeScript toolkit for countries, currencies, languages and flags.",
   "author": "Swapnil Andhale <sw4pn@yahoo.com>",
